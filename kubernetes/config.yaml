@@ -26,8 +26,8 @@ spec:
         # - image: gcr.io/hayholzwebsite/github.com/hayholz/hayholz-website:775aa284cb198e00fe34a2c21aee8583790e3aab
           imagePullPolicy: IfNotPresent
           name: hayholzdockerimage-sha256-1
-          # ports:
-          #   - containerPort: 80
+          ports:
+            - containerPort: 80
 # ---
 # apiVersion: autoscaling/v2beta1
 # kind: HorizontalPodAutoscaler
