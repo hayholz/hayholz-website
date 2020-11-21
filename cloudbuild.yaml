@@ -1,4 +1,4 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/hayholzwebsite/hayholzdockerimage', '-f', 'Dockerfile', '.' ]
+  args: [ 'build', '-t', 'gcr.io/hayholzwebsite/hayholzdockerimage', '-f', 'Dockerfile.prod', '.' ]
 images: ['gcr.io/hayholzwebsite/hayholzdockerimage']
