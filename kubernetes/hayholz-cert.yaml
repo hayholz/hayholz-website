@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: hayholz-cert
+spec:
+  domains:
+    - hayholz.dev
+    - www.hayholz.dev
