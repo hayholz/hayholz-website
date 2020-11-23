@@ -16,18 +16,26 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: 'black'
+  },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `100%`,
-      // marginLeft: drawerWidth,
-    },
+    // backgroundImage: `linear-gradient(rgba(0, 0, 0, .5), rgba(0,0,0,0))`,
+    color: 'black',
+    boxShadow: '0 0 black',
+    backgroundColor: 'rgba(0, 0, 0, 0)'
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
+  tabs: {
+    float: 'right',
   },
+  tab: {
+    margin: 8,
+    color: 'white',
+    // fontFamily: `'Lato', sans-serif;`
+  },
+  spacing: {
+    flexGrow: 1,
+  }
 }));
 
 function App() {
@@ -43,10 +51,10 @@ function App() {
     dispatch(setMobileOpen())
   };
   return (
-    <div>
-      <AppBar position="relative" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
+    <div className={classes.root}>
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar className={classes.tabs}>
+          {/* <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
@@ -54,13 +62,27 @@ function App() {
             className={classes.menuButton}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Hayden Holzhauser
-          </Typography>
+          </IconButton> */}
+          <div className={classes.spacing} />
+          <div className={classes.tab}>
+            <Typography variant="h6" noWrap>
+              Home
+            </Typography>
+          </div>
+          <div className={classes.tab}>
+            <Typography variant="h6" noWrap>
+              About
+            </Typography>
+          </div>
+          <div className={classes.tab}>
+            <Typography variant="h6" noWrap>
+              Contact
+            </Typography>
+          </div>
         </Toolbar>
       </AppBar>
-      <ResponsiveDrawer body={usePage(currentPage)}/>
+      {usePage(currentPage)}
+      {/* <ResponsiveDrawer body={usePage(currentPage)}/> */}
     </div>
   )
   // return usePage(currentPage);
