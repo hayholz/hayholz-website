@@ -21,12 +21,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  whiteHaze: {
-    width: '100%',
-    height: 320,
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, .8), rgba(0,0,0,0))`,
-    zIndex: 100,
-  },
   firstSection: {
     backgroundImage: `url('https://storage.googleapis.com/hayholzimages/DSC04106-2.jpg')`,
     backgroundSize: 'cover',
@@ -36,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: 'white',
     textAlign: 'center',
-    marginTop: -256,
+    // marginTop: -256,
     fontFamily: `'Lato', sans-serif;`,
     textShadow: `2px 2px rgba(0,0,0,0.12)`,
+    zIndex: 100,
   },
   subTitle: {
     color: 'white',
@@ -62,14 +57,13 @@ export default function Home() {
   return (
     <div className={classes.root}>
       <div className={classes.firstSection}>
-        <div className={classes.whiteHaze}> 
-        </div>
-        <Typography className={classes.title} variant='h3'>
+        
+        {/* <Typography className={classes.title} variant='h3'>
           Hayden Holzhauser
         </Typography>
         <Typography className={classes.subTitle}>
           Software Engineer
-        </Typography>
+        </Typography> */}
       </div>
       <div className={classes.secondSection}>
 

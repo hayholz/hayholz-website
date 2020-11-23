@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Fade from '@material-ui/core/Fade';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -27,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     float: 'right',
+    top: 0,
+    right: 0,
+    position: 'absolute'
   },
   tab: {
     margin: 8,
@@ -35,7 +39,28 @@ const useStyles = makeStyles((theme) => ({
   },
   spacing: {
     flexGrow: 1,
-  }
+  },
+  whiteHaze: {
+    width: '100%',
+    height: 320,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, .8), rgba(0,0,0,0))`,
+    zIndex: -1,
+  },
+  title: {
+    color: 'white',
+    textAlign: 'center',
+    marginTop: -256,
+    fontFamily: `'Lato', sans-serif;`,
+    textShadow: `2px 2px rgba(0,0,0,0.12)`,
+    zIndex: 100,
+  },
+  subTitle: {
+    color: 'white',
+    textShadow: `2px 2px rgba(0,0,0,0.12)`,
+    textAlign: 'center',
+    fontFamily: `'Lato', sans-serif;`,
+    fontSize: 24
+  },
 }));
 
 function App() {
@@ -53,6 +78,13 @@ function App() {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
+        <div className={classes.whiteHaze} /> 
+        <Typography className={classes.title} variant='h3'>
+          Hayden Holzhauser
+        </Typography>
+        <Typography className={classes.subTitle}>
+          Software Engineer
+        </Typography>
         <Toolbar className={classes.tabs}>
           {/* <IconButton
             color="inherit"
@@ -63,7 +95,7 @@ function App() {
           >
             <MenuIcon />
           </IconButton> */}
-          <div className={classes.spacing} />
+          {/* <div className={classes.spacing} /> */}
           <div className={classes.tab}>
             <Typography variant="h6" noWrap>
               Home
