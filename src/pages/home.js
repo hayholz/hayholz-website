@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 100,
   },
   firstSection: {
-    backgroundImage: `url('https://storage.googleapis.com/hayholzimages/DSC04106.jpg')`,
+    backgroundImage: `url('https://storage.googleapis.com/hayholzimages/DSC04106-2.jpg')`,
     backgroundSize: 'cover',
     height: `calc(100vh)`,
+    backgroundPosition: 'center',
   },
   title: {
     color: 'white',
