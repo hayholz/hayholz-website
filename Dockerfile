@@ -17,4 +17,4 @@ RUN npm install react-scripts@3.4.1 -g
 COPY . ./
 
 # start app
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
