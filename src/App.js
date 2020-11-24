@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: 'white',
     textAlign: 'center',
-    marginTop: -256,
+    // marginTop: -256,
     fontFamily: `'Lato', sans-serif;`,
     textShadow: `2px 2px rgba(0,0,0,0.12)`,
     zIndex: 100,
@@ -78,13 +78,7 @@ function App() {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
-        <div className={classes.whiteHaze} /> 
-        <Typography className={classes.title} variant='h3'>
-          Hayden Holzhauser
-        </Typography>
-        <Typography className={classes.subTitle}>
-          Software Engineer
-        </Typography>
+       
         <Toolbar className={classes.tabs}>
           {/* <IconButton
             color="inherit"
