@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -10,7 +10,7 @@ import {
   Typography,
   Slide
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import * as _ from 'lodash';
 import ScrollComponent from '../components/ScrollComponent';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: 'white',
     textAlign: 'center',
-    marginTop: -256,
+    marginTop: -224,
     fontFamily: `'Lato', sans-serif;`,
     textShadow: `2px 2px rgba(0,0,0,0.12)`,
     zIndex: 100,
@@ -63,18 +63,26 @@ export default function Home() {
   const classes = useStyles();
   const titleRef = useRef();
   const [showTitle, setShowTitle] = React.useState(true);
+  const throttleMili = 200;
 
-  const titleScrollHandler = () => {
-    const offset = 11;
-    console.log('scrolling', titleRef.current);
-    const top = titleRef.current.getBoundingClientRect().top;
-    const newVal = top + offset >= 0 && top - offset <= window.innerHeight;
+  const titleScrollHandler = _.throttle(() => {
+    // if(top !== undefined) {
+      const offset = -64;
+      const top = titleRef.current.getBoundingClientRect().top;
 
-    if(showTitle !== newVal) {
-      setShowTitle(newVal);
-    };
-    console.log('isVisible', top + offset >= 0 && top - offset <= window.innerHeight);
-  }
+      const showTitleBool = top + offset >= 0 && top - offset <= window.innerHeight && top >= 288;
+
+      if(showTitle !== showTitleBool) {
+        console.log('scrolling', titleRef.current);
+        console.log({top, offset})
+        setShowTitle(showTitleBool);
+        console.log('isVisible', top + offset >= 0 && top - offset <= window.innerHeight);
+      };
+    // }
+  }, throttleMili)
+
+  // useEffect(() => {
+  // }, showTitle);
 
   return (
     <div className={classes.root}>
