@@ -8,10 +8,13 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Slide
+  Slide,
+  Fade
 } from '@material-ui/core';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import * as _ from 'lodash';
 import ScrollComponent from '../components/ScrollComponent';
+import SplitCard from '../components/SplitCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     height: `calc(100vh)`,
     backgroundPosition: 'center',
+    position: 'relative'
   },
   title: {
     color: 'white',
@@ -57,12 +61,31 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     width: '100%',
     backgroundColor: 'white'
+  },
+  aboutMeTitle: {
+    paddingTop: 128,
+    color: 'black',
+    // textShadow: `2px 2px rgba(0,0,0,0.12)`,
+    textAlign: 'center',
+    // fontFamily: `'Lato', sans-serif;`,
+    // fontSize: 32
+  },
+  footer: {
+    textAlign: 'center',
+    color: 'white',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 32,
+    fontWeight: 'bold'
   }
 }));
 
 export default function Home() {
   const classes = useStyles();
   const [showTitle, setShowTitle] = React.useState(true);
+  const [showMoreAboutMe, setShowMoreAboutMe] = React.useState(true);
+
   const throttleMili = 200;
 
   const titleScrollHandler = _.throttle(() => {
@@ -70,6 +93,14 @@ export default function Home() {
 
     if(showTitle !== showTitleBool) {
       setShowTitle(showTitleBool);
+    };
+  }, throttleMili)
+
+  const moreAboutMeHandler = _.throttle(() => {
+    const showMoreAboutMeBool = window.scrollY < window.innerHeight - 384;
+
+    if(showMoreAboutMe !== showMoreAboutMeBool) {
+      setShowMoreAboutMe(showMoreAboutMeBool);
     };
   }, throttleMili)
 
@@ -92,16 +123,27 @@ export default function Home() {
             </div>
           </Slide>
         </ScrollComponent>
-        
-        {/* <Typography className={classes.title} variant='h3'>
-          Hayden Holzhauser
-        </Typography>
-        <Typography className={classes.subTitle}>
-          Software Engineer
-        </Typography> */}
-      </div>
-      <div className={classes.secondSection}>
 
+        <div className={classes.footer}>
+          <ScrollComponent onScrollHandler={moreAboutMeHandler}>
+            <Fade in={showMoreAboutMe}>
+              <div>
+                <Typography>
+                  Learn More About Me!
+                </Typography>
+                <ArrowDownwardIcon />
+              </div>  
+            </Fade>
+          </ScrollComponent>
+        </div>
+      </div>
+      <div id='about' className={classes.secondSection}>
+        <div>
+          <Typography className={classes.aboutMeTitle} variant='h3'>
+            About Me
+          </Typography>
+          <SplitCard />
+        </div>
       </div>
       {/* <AppBar position="static">
         <Toolbar variant="dense">

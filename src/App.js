@@ -8,6 +8,7 @@ import ResponsiveDrawer from './components/ResponsiveDrawerCustom';
 import { selectCurrentPage, selectMobileOpen, setMobileOpen } from './state/navigation/navigation';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -22,19 +23,21 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: 'black'
+    // backgroundColor: 'black'
   },
   appBar: {
     // backgroundImage: `linear-gradient(rgba(0, 0, 0, .5), rgba(0,0,0,0))`,
     color: 'black',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     zIndex: 1,
+    // boxShadow: 'none'
+    overflow: 'hidden'
   },
   tabs: {
     float: 'right',
     top: 0,
     right: 0,
-    position: 'absolute'
+    position: 'absolute',
   },
   tab: {
     margin: 8,
@@ -67,7 +70,11 @@ const useStyles = makeStyles((theme) => ({
   },
   animatedToolbar: {
     backgroundColor: 'black',
-    zIndex: -1
+    zIndex: -1,
+  },
+  tabLink: {
+    textDecoration: 'none !important',
+    color: 'white'
   }
 }));
 
@@ -81,10 +88,8 @@ function App() {
 
   const appBarScrollHandler = _.throttle(() => {
     const showAppBarBool = window.scrollY > 128;
-    console.log(showAppBarBool)
     if(animateAppBar !== showAppBarBool) {
       setAnimateAppBar(showAppBarBool);
-      console.log('Yuh')
     };
   }, throttleMili);
   const pages = [<Home />];
@@ -95,26 +100,18 @@ function App() {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.tabs}>
-          {/* <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton> */}
-          {/* <div className={classes.spacing} /> */}
-
           <div className={classes.tab}>
             <Typography variant="h6" noWrap>
               Home
             </Typography>
           </div>
           <div className={classes.tab}>
-            <Typography variant="h6" noWrap>
-              About
-            </Typography>
+            <Link href='#about' className={classes.tabLink}>
+              <Typography variant="h6" noWrap>
+                About
+              </Typography>
+            </Link>
+            
           </div>
           <div className={classes.tab}>
             <Typography variant="h6" noWrap>
