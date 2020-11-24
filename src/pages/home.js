@@ -15,11 +15,11 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import * as _ from 'lodash';
 import ScrollComponent from '../components/ScrollComponent';
 import SplitCard from '../components/SplitCard';
+import SlideCards from '../components/SlideCards';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    // marginTop: 12,
   },
   paper: {
     padding: theme.spacing(2),
@@ -65,10 +65,7 @@ const useStyles = makeStyles((theme) => ({
   aboutMeTitle: {
     paddingTop: 128,
     color: 'black',
-    // textShadow: `2px 2px rgba(0,0,0,0.12)`,
     textAlign: 'center',
-    // fontFamily: `'Lato', sans-serif;`,
-    // fontSize: 32
   },
   footer: {
     textAlign: 'center',
@@ -77,7 +74,14 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
     bottom: 32,
+  },
+  learnMore: {
     fontWeight: 'bold'
+  },
+  thirdSection: {
+    minHeight: '100vh',
+    width: '100%',
+    backgroundColor: '#F8F9FA'
   }
 }));
 
@@ -87,6 +91,15 @@ export default function Home() {
   const [showMoreAboutMe, setShowMoreAboutMe] = React.useState(true);
 
   const throttleMili = 200;
+
+  const companiesWorkedFor = [
+    { title: 'Walmart', img: `${process.env.PUBLIC_URL + '/walmart.webp'}`, body: 'Worked on multiple applications for '},
+    { title: 'Sams Club', img: ''},
+    { title: 'Chick-Fil-A', img: ''},
+    { title: 'Microsoft', img: ''},
+    { title: 'Autozone', img: ''},
+    { title: 'Virgin Hotels', img: ''},
+  ]
 
   const titleScrollHandler = _.throttle(() => {
     const showTitleBool = window.scrollY < 32;
@@ -104,12 +117,9 @@ export default function Home() {
     };
   }, throttleMili)
 
-  // useEffect(() => {
-  // }, showTitle);
-
   return (
     <div className={classes.root}>
-      <div className={classes.firstSection}>
+      <div id='home' className={classes.firstSection}>
         <div className={classes.whiteHaze} /> 
         <ScrollComponent onScrollHandler={titleScrollHandler}>
           <Slide direction="down" in={showTitle} mountOnEnter unmountOnExit>
@@ -128,7 +138,7 @@ export default function Home() {
           <ScrollComponent onScrollHandler={moreAboutMeHandler}>
             <Fade in={showMoreAboutMe}>
               <div>
-                <Typography>
+                <Typography className={classes.learnMore}>
                   Learn More About Me!
                 </Typography>
                 <ArrowDownwardIcon />
@@ -145,16 +155,14 @@ export default function Home() {
           <SplitCard />
         </div>
       </div>
-      {/* <AppBar position="static">
-        <Toolbar variant="dense">
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit">
-            Hayden Holzhauser
+      <div id='about' className={classes.thirdSection}>
+        <div>
+          <Typography className={classes.aboutMeTitle} variant='h3'>
+            Past Experience
           </Typography>
-        </Toolbar>
-      </AppBar> */}
+          <SlideCards companiesWorkedFor={companiesWorkedFor} />
+        </div>
+      </div>
     </div>
   );
 }

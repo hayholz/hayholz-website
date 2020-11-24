@@ -101,9 +101,11 @@ function App() {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.tabs}>
           <div className={classes.tab}>
-            <Typography variant="h6" noWrap>
-              Home
-            </Typography>
+            <Link href='#home' className={classes.tabLink}>
+              <Typography variant="h6" noWrap>
+                Home
+              </Typography>
+            </Link>
           </div>
           <div className={classes.tab}>
             <Link href='#about' className={classes.tabLink}>
