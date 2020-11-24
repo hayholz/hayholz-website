@@ -12,7 +12,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
+import Collapse from '@material-ui/core/Collapse'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import ScrollComponent from './components/ScrollComponent';
+import * as _ from 'lodash';
+
 
 const drawerWidth = 240;
 
@@ -23,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     // backgroundImage: `linear-gradient(rgba(0, 0, 0, .5), rgba(0,0,0,0))`,
     color: 'black',
-    boxShadow: '0 0 black',
-    backgroundColor: 'rgba(0, 0, 0, 0)'
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    zIndex: 1,
   },
   tabs: {
     float: 'right',
@@ -61,6 +65,10 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: `'Lato', sans-serif;`,
     fontSize: 24
   },
+  animatedToolbar: {
+    backgroundColor: 'black',
+    zIndex: -1
+  }
 }));
 
 function App() {
@@ -68,17 +76,24 @@ function App() {
   const mobileOpen = useSelector(selectMobileOpen);
   const dispatch = useDispatch();
   const classes = useStyles();
+  const [animateAppBar, setAnimateAppBar] = React.useState(false);
+  const throttleMili = 0;
+
+  const appBarScrollHandler = _.throttle(() => {
+    const showAppBarBool = window.scrollY > 128;
+    console.log(showAppBarBool)
+    if(animateAppBar !== showAppBarBool) {
+      setAnimateAppBar(showAppBarBool);
+      console.log('Yuh')
+    };
+  }, throttleMili);
   const pages = [<Home />];
   const usePage = (pageIndex) => {
     return pages[pageIndex];
   };
-  const handleDrawerToggle = () => {
-    dispatch(setMobileOpen())
-  };
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
-       
         <Toolbar className={classes.tabs}>
           {/* <IconButton
             color="inherit"
@@ -90,6 +105,7 @@ function App() {
             <MenuIcon />
           </IconButton> */}
           {/* <div className={classes.spacing} /> */}
+
           <div className={classes.tab}>
             <Typography variant="h6" noWrap>
               Home
@@ -106,6 +122,11 @@ function App() {
             </Typography>
           </div>
         </Toolbar>
+        <ScrollComponent onScrollHandler={appBarScrollHandler}>
+          <Collapse in={animateAppBar}>
+            <Toolbar className={classes.animatedToolbar} />
+          </Collapse>
+        </ScrollComponent>
       </AppBar>
       {usePage(currentPage)}
       {/* <ResponsiveDrawer body={usePage(currentPage)}/> */}

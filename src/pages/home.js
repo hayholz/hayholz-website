@@ -55,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
   },
   secondSection: {
     height: '100vh',
-    width: '100%'
+    width: '100%',
+    backgroundColor: 'white'
   }
 }));
 
