@@ -61,24 +61,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
-  const titleRef = useRef();
   const [showTitle, setShowTitle] = React.useState(true);
   const throttleMili = 200;
 
   const titleScrollHandler = _.throttle(() => {
-    // if(top !== undefined) {
-      const offset = -64;
-      const top = titleRef.current.getBoundingClientRect().top;
+    const showTitleBool = window.scrollY < 32;
 
-      const showTitleBool = top + offset >= 0 && top - offset <= window.innerHeight && top >= 288;
-
-      if(showTitle !== showTitleBool) {
-        console.log('scrolling', titleRef.current);
-        console.log({top, offset})
-        setShowTitle(showTitleBool);
-        console.log('isVisible', top + offset >= 0 && top - offset <= window.innerHeight);
-      };
-    // }
+    if(showTitle !== showTitleBool) {
+      setShowTitle(showTitleBool);
+    };
   }, throttleMili)
 
   // useEffect(() => {
@@ -88,7 +79,7 @@ export default function Home() {
     <div className={classes.root}>
       <div className={classes.firstSection}>
         <div className={classes.whiteHaze} /> 
-        <ScrollComponent onScrollHandler={titleScrollHandler} divRef={titleRef}>
+        <ScrollComponent onScrollHandler={titleScrollHandler}>
           <Slide direction="down" in={showTitle} mountOnEnter unmountOnExit>
             <div>
             <Typography className={classes.title} variant='h3'>
