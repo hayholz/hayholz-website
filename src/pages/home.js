@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh',
     width: '100%',
     backgroundColor: '#F8F9FA'
-  }
+  },
 }));
 
 export default function Home() {
@@ -93,12 +93,12 @@ export default function Home() {
   const throttleMili = 200;
 
   const companiesWorkedFor = [
-    { title: 'Walmart', img: `${process.env.PUBLIC_URL + '/walmart.webp'}`, body: 'Worked on multiple applications for '},
-    { title: 'Sams Club', img: ''},
-    { title: 'Chick-Fil-A', img: ''},
-    { title: 'Microsoft', img: ''},
-    { title: 'Autozone', img: ''},
-    { title: 'Virgin Hotels', img: ''},
+    { title: 'Walmart', img: `${process.env.PUBLIC_URL + '/walmart.webp'}`, body: 'Worked on multiple applications for Walmart, including applications using React, Angular, And Node'},
+    { title: 'Sams Club', img: `${process.env.PUBLIC_URL + '/samsclub.svg'}`, body: 'Worked on a self checkout kiosk UI, refactored it all into angular'},
+    { title: 'Chick-Fil-A', img: `${process.env.PUBLIC_URL + '/chickfilatwo.png'}`, body: 'Worked on a mobile application that was being used to train employees at Chick-Fil-A, using React Native'},
+    { title: 'Microsoft', img: `${process.env.PUBLIC_URL + '/microsoft.jpg'}`, body: 'Worked on a contract with Microsoft that helped move applications within Walmart onto azure'},
+    { title: 'Autozone', img: `${process.env.PUBLIC_URL + '/autozone.png'}`, body: 'Worked on multiple modules that were used by salesmen across the country to sell parts for AutoZone'},
+    { title: 'Virgin Hotels', img: `${process.env.PUBLIC_URL + '/virginhotels.png'}`, body: ' Worked on a employee engagement applications that was running as a rails application'},
   ]
 
   const titleScrollHandler = _.throttle(() => {

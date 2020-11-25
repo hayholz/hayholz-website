@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: theme.spacing(2),
     height: 300,
-    width: 300
+    width: 300,
+    display: 'inline-block'
+
   },
   svg: {
     width: 100,
@@ -34,10 +36,18 @@ const useStyles = makeStyles((theme) => ({
     strokeWidth: 1,
   },
   companyImg: {
-    width: 150,
+    maxWidth: 250,
+    maxHeight: 150,
     display: 'block',
-    margin: 'auto'
-  }
+    margin: 'auto',
+
+  },
+  imgContainer: {
+    width: '100%',
+    height: 150,
+    display: 'flex',
+    justifyContent: 'center'
+  },
 }));
 
 export default function SimpleGrow(props) {
@@ -75,9 +85,11 @@ export default function SimpleGrow(props) {
                 >
                   <Card elevation={4} className={classes.paper}>
                     <CardContent>
-                    <img className={classes.companyImg} src={obj.img} /> 
+                      <div className={classes.imgContainer}>
+                        <img className={classes.companyImg} src={obj.img} /> 
+                      </div>
                       <Typography>
-                        {obj.title}
+                        {obj.body}
                       </Typography>
                     </CardContent>
                   </Card>

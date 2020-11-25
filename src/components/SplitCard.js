@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     maxWidth: 'calc(100vw / 2)',
     margin: '64px auto',
-    backgroundColor: 'black',
-    color: 'white',
+    backgroundColor: '#F8F9FA',
+    color: 'black',
   },
   details: {
     display: 'flex',
