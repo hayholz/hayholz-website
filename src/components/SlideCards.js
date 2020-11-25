@@ -1,18 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
-import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import * as _ from 'lodash';
 import { CardContent, Card, Typography } from '@material-ui/core';
 import ScrollComponent from './ScrollComponent';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-
-  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -53,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleGrow(props) {
   const { companiesWorkedFor } = props;
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(false);
   const [showContainer, setShowContainer] = React.useState(false);
 
 
@@ -67,12 +60,8 @@ export default function SimpleGrow(props) {
     }
   }, throttleMilli)
 
-  const handleChange = () => {
-    setChecked((prev) => !prev);
-  };
-
   return (
-    <div className={classes.root}>
+    <div>
       <ScrollComponent onScrollHandler={containerScrollHandler}>
         <div className={classes.container}>
             {_.map(companiesWorkedFor, (obj, idx) => {
@@ -82,11 +71,12 @@ export default function SimpleGrow(props) {
                   in={showContainer}
                   style={{ transformOrigin: '0 0 0' }}
                   {...(showContainer ? { timeout } : {})}
+                  key={idx}
                 >
                   <Card elevation={4} className={classes.paper}>
                     <CardContent>
                       <div className={classes.imgContainer}>
-                        <img className={classes.companyImg} src={obj.img} /> 
+                        <img className={classes.companyImg} src={obj.img} alt={obj.title} /> 
                       </div>
                       <Typography>
                         {obj.body}
