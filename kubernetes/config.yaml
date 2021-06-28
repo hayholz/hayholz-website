@@ -6,7 +6,7 @@ metadata:
   name: nginx-1
   namespace: default
 spec:
-  replicas: 3
+  replicas: 0
   selector:
     matchLabels:
       app: nginx-1
@@ -36,13 +36,13 @@ metadata:
   name: nginx-1-hpa-kycw
   namespace: default
 spec:
-  maxReplicas: 3
+  maxReplicas: 0
   metrics:
     - resource:
         name: cpu
         targetAverageUtilization: 80
       type: Resource
-  minReplicas: 1
+  minReplicas: 0
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
